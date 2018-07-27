@@ -24,12 +24,12 @@ static inline void accum_add(int idx, unsigned long addend)
 	ROCC_INSTRUCTION_SS(0, addend, idx, 3);
 }
 
-unsigned long data = 13L,data1 = 7L;
+unsigned long data = 123456L,data1 = 456789L;
 
 int main(void)
 {
-	unsigned long result,a,b;
-	
+	unsigned long a,b;
+	unsigned long long result;
 	
 	accum_load(0, &data);
 	accum_load(1, &data1);
@@ -41,7 +41,9 @@ int main(void)
 	printf("data = %lu\n", data1);
 	printf("b = %lu\n", b);	
 	result = accum_read(2);
-	printf("a * b = %lu\n", result);
+	printf("a * b = %llu\n", result);
+	result = data * data1;
+	printf("Answer = %llu\n" , result);
 	/*if (result != data + 2)
 		return 1;
 	
